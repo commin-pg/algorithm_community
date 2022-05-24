@@ -24,6 +24,34 @@ public class OvertimeWorkRate {
         System.out.println(solution3(5, ex5) == 16*3);
     }
 
+    private static long solution4(int n, int[] works){
+        long answer = 0;
+
+        // 1 length가 1인 경우 빠르게 처리해주자
+        if(works.length == 1){
+            works[0] = works[0] - n;
+            if(works[0] < 0) return 0;
+            return (long) works[0] * works[0];
+        }
+
+        // 내림차순으로 정렬
+        reverseSort(works);
+
+        // 우선순위 큐로 만들어준 뒤
+        // 0번째 인자에서 하나씩 빼줌
+        while (n > 0){
+            priorityQueue(works);
+            if(works[0] == 0) break;
+            works[0]--;
+            n--;
+        }
+
+        // 제곱해서 더해줍니다.
+        for (int work: works) answer += (long) work * work;
+
+        return answer;
+    }
+
     public static long solution(int n, int[] works) {
         long answer = 0;
         reverseSort(works);
