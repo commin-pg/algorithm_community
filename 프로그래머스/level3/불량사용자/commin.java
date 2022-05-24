@@ -60,7 +60,7 @@ public class commin {
         visit = new int[user_id.length];
 
         // 깊이 우선 탐색
-        dfs(0,"", user_id, banned_id);
+        dfs(0, "", user_id, banned_id);
 
         return resultSet.size();
     }
@@ -75,29 +75,30 @@ public class commin {
             String[] resultArr = resultStr.split(",");
             Arrays.sort(resultArr);
             StringBuilder sb = new StringBuilder();
-            for(String s : resultArr){
+            for (String s : resultArr) {
                 sb.append(s);
             }
             resultSet.add(sb.toString());
             return;
         }
 
-
         for (int i = 0; i < user_id.length; i++) {
             // 종료 조건
-            if (visit[i] == 1) continue;
-            if(!isMatchedId(user_id[i],banned_id[banIdx])) continue;
+            if (visit[i] == 1)
+                continue;
+            if (!isMatchedId(user_id[i], banned_id[banIdx]))
+                continue;
 
             // 조건 만족 > 깊이우선탐색 계속
             visit[i] = 1; // 탐색 종료
 
-            dfs(banIdx + 1, resultStr + "," +user_id[i] , user_id, banned_id);
+            dfs(banIdx + 1, resultStr + "," + user_id[i], user_id, banned_id);
             visit[i] = 0; // 다시 탐색
         }
 
     }
 
     public static void main(String[] args) {
-        new commin();
+        new commin3();
     }
 }
