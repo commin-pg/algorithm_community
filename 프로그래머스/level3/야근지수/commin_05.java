@@ -55,7 +55,7 @@ public class commin_05 {
         }
 
         @Override
-        public int compareTo(commin_05.WorkQ o) {
+        public int compareTo(WorkQ o) {
             return o.work - this.work;
         }
     }
@@ -83,7 +83,7 @@ public class commin_05 {
             answer += q * q;
         }
 
-        System.err.println(answer);
+        // System.err.println(answer);
         return answer;
     }
 

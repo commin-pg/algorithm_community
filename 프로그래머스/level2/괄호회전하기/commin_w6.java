@@ -47,22 +47,57 @@ public class commin_w6 {
         return result;
     }
 
+    // public int solution(String s) {
+    // int answer = 0;
+    // String rot = s;
+
+    // while (true) {
+    // String tmp = rot;
+    // rot = rotation(tmp);
+    // if (isValid(rot)) {
+    // answer++;
+    // }
+    // if (s.equalsIgnoreCase(rot)) {
+    // break;
+    // }
+    // }
+    // System.out.println(answer);
+    // return answer;
+    // }
+
+    private static String[] rightStrArr = new String[] { "\\(\\)", "\\[\\]", "\\{\\}" };
+
     public int solution(String s) {
         int answer = 0;
-        String rot = s;
 
-        while (true) {
-            String tmp = rot;
-            rot = rotation(tmp);
-            if (isValid(rot)) {
+        if (s.length() == 0)
+            return 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char firstChar = s.charAt(0);
+            s = s.substring(1) + firstChar;
+            if (validStr(s))
                 answer++;
-            }
-            if (s.equalsIgnoreCase(rot)) {
-                break;
-            }
         }
-        System.out.println(answer);
+
         return answer;
+    }
+
+    public boolean validStr(String s) {
+        System.out.println(s);
+        String temp = s;
+        for (int i = 0; i < rightStrArr.length; i++) {
+            if (temp.contains("()") || temp.contains("[]") || temp.contains("{}")) {
+                temp = temp.replaceAll("\\{\\}", "");
+                temp = temp.replaceAll("\\(\\)", "");
+                temp = temp.replaceAll("\\[\\]", "");
+                i = 0;
+            }
+
+            if (temp.equals(""))
+                return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
